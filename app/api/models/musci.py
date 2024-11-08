@@ -36,6 +36,7 @@ class Song(db.Model):
     mid = db.Column(db.String(20), nullable=True)
     subtitle = db.Column(db.String(50))
     album = db.Column(db.String(50))
+    song_url = db.Column(db.String(100))
 
     # 关系：一首歌可以有多个 SongSinger 记录
     song_singers = db.relationship('SongSinger', back_populates='song')

@@ -9,9 +9,16 @@ def singer_url():
         print(url)
 
 
-def song_url():
+def singer_song_url():
+    # 歌手关联歌曲信息
     url = setting.song_list_url.format(singer_mid="0017DdFg2hCIao", begin=0, num=100)
     print(url)
 
 
-song_url()
+
+def detail_song_url():
+    # 歌曲详情
+    url = setting.song_url.format(song_mid="003IrtsC4XLMQr")
+    print(url)
+
+detail_song_url()

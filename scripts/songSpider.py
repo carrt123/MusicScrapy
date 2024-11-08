@@ -38,8 +38,8 @@ class DatabaseManager:
 
     def insert_song(self, song_data):
         sql = """
-            INSERT INTO song (id, title, subtitle, type, language, time_public, mid, album)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO song (id, title, subtitle, type, language, time_public, mid, album, song_url)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """
         try:
             self.cursor.execute(sql, (
@@ -50,7 +50,8 @@ class DatabaseManager:
                 song_data['language'],
                 song_data['time_public'],
                 song_data['mid'],
-                song_data['album']
+                song_data['album'],
+                song_data['song_url']
             ))
             self.conn.commit()
             logging.info(f"Inserted song {song_data['title']} successfully")
@@ -117,7 +118,8 @@ class SongSpider:
             'language': song_info['language'],
             'time_public': song_info['time_public'] if song_info['time_public'] else None,
             'mid': song_info['mid'],
-            'album': song_info['album']['name']
+            'album': song_info['album']['name'],
+            'song_url': self.url_setting.song_url.format(song_mid=song_info['mid'])
         }
 
         self.db_manager.insert_song(song_data)
