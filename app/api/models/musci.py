@@ -32,7 +32,7 @@ class Song(db.Model):
     title = db.Column(db.String(50), nullable=False)
     type = db.Column(db.String(10), nullable=True)
     language = db.Column(db.String(10), nullable=True)
-    time_public = db.Column(db.DateTime, nullable=True)
+    time_public = db.Column(db.DateTime, default=None)
     mid = db.Column(db.String(20), nullable=True)
     subtitle = db.Column(db.String(50))
     album = db.Column(db.String(50))
