@@ -10,7 +10,7 @@ class SingerSchema(Schema):
     sex = fields.String(validate=validate.OneOf(['男', '女']), describe="歌手性别")
     country = fields.String(validate=validate.Length(min=1, max=20), describe="歌手国籍")
     picture = fields.String(validate=validate.Length(min=1, max=100), describe="歌手图片")
-    mid = fields.String(validate=validate.Length(min=1, max=20), describe="歌曲mid")
+    mid = fields.String(validate=validate.Length(min=1, max=20), describe="歌手歌曲mid")
 
     @post_load
     def make_singer(self, data, **kwargs):

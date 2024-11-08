@@ -1,5 +1,4 @@
 from flask_restx import Namespace, Resource, fields
-from app.utils.validators import validate_singer_data
 from flask import request
 from app.services.singer_service import SingerService
 
