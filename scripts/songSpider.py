@@ -31,6 +31,7 @@ class DatabaseManager:
             self.cursor.execute(sql, (singer_id, song_id))
             self.conn.commit()
             logging.info(f"Inserted song_singer: {singer_id}, {song_id}")
+            print(f"Inserted song_singer: {singer_id}, {song_id}")
         except sqlite3.IntegrityError as e:
             logging.error(f"Error inserting song_singer: {e}")
             self.conn.rollback()
@@ -53,6 +54,7 @@ class DatabaseManager:
             ))
             self.conn.commit()
             logging.info(f"Inserted song {song_data['title']} successfully")
+            print(f"Inserted song {song_data['title']} successfully")
         except sqlite3.Error as e:
             self.conn.rollback()
             logging.error(f"Failed to insert song {song_data['title']}: {e}")
@@ -113,7 +115,7 @@ class SongSpider:
             'subtitle': song_info['subtitle'],
             'type': song_info['type'],
             'language': song_info['language'],
-            'time_public': song_info['time_public'],
+            'time_public': song_info['time_public'] if song_info['time_public'] else None,
             'mid': song_info['mid'],
             'album': song_info['album']['name']
         }
@@ -159,7 +161,7 @@ def main():
 
     # 执行爬虫任务
     try:
-        song_spider.run(begin=0, num=100)
+        song_spider.run(begin=0, num=50)
     finally:
         db_manager.close()
 
