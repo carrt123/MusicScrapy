@@ -34,7 +34,7 @@ class SongSetting:
         "8": "R&B",
         "19": "国风",
         "33": "古典",
-        "0":"Pop"
+        "0": "Pop"
     }
 
     language_dict = {
